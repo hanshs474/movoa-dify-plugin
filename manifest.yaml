@@ -1,0 +1,44 @@
+version: 0.0.1
+type: plugin
+author: hanshs474
+name: movoa
+label:
+  en_US: Movoa
+  zh_Hans: Movoa
+description:
+  en_US: >-
+    Unlimited AI video generator with sound: on paid plans the tenth take of a
+    shot costs what the first did, and your first clip is free to make right now.
+    Official Dify plugin for Movoa (https://movoa.ai): text to video and photo
+    to video with sound on MiniMax H3, Seedance, and Veo 3.1.
+  zh_Hans: >-
+    在 Dify 工作流或 Agent 里用 Movoa（https://movoa.ai）生成带声音的视频：文生视频或首帧图生视频，支持 MiniMax H3、Seedance 与 Veo 3.1。
+icon: icon.png
+tags:
+  - videos
+resource:
+  memory: 33554432
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+    - provider/movoa.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: null
+privacy: PRIVACY.md
+repo: https://github.com/hanshs474/movoa-dify-plugin
+contact: support@movoa.ai
+network:
+  domains:
+    - movoa.ai
+    - cdn.movoa.ai
+created_at: 2026-11-16T12:16:00.000000+08:00

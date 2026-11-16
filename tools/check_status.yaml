@@ -1,0 +1,27 @@
+identity:
+  name: check_status
+  author: hanshs474
+  label:
+    en_US: Check status
+    zh_Hans: 查询状态
+description:
+  human:
+    en_US: Look up a run started by Generate video and return its URL once it is ready.
+    zh_Hans: 查询生成中的视频，完成后返回 URL。
+  llm: >-
+    Look up a task id returned by generate_video. Returns the clip URL when it is done, says so while it is still generating or queued, and gives the reason when it failed.
+parameters:
+  - name: task_id
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Task id
+      zh_Hans: 任务 ID
+    human_description:
+      en_US: The id returned by Generate video.
+      zh_Hans: 生成视频返回的 ID。
+    llm_description: The task id returned by generate_video.
+extra:
+  python:
+    source: tools/check_status.py

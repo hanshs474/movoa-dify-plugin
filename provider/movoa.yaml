@@ -1,0 +1,35 @@
+identity:
+  author: hanshs474
+  name: movoa
+  label:
+    en_US: Movoa
+    zh_Hans: Movoa
+  description:
+    en_US: >-
+      Text to video and photo to video with sound on Movoa (https://movoa.ai).
+      Paste an API key from https://movoa.ai/settings/apikeys; runs cost credits
+      at the prices on https://movoa.ai/pricing.
+    zh_Hans: >-
+      Movoa（https://movoa.ai）带声音的文生视频与图生视频。填入在
+      https://movoa.ai/settings/apikeys 创建的 API key；调用按网站价格扣积分。
+  icon: icon.png
+credentials_for_provider:
+  api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: API key
+      zh_Hans: API key
+    placeholder:
+      en_US: sk-...
+      zh_Hans: sk-...
+    help:
+      en_US: Create one at movoa.ai/settings/apikeys
+      zh_Hans: 在 movoa.ai/settings/apikeys 创建
+    url: https://movoa.ai/settings/apikeys?utm_source=dify&utm_medium=plugin
+tools:
+  - tools/generate_video.yaml
+  - tools/check_status.yaml
+extra:
+  python:
+    source: provider/movoa.py

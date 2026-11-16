@@ -1,0 +1,123 @@
+identity:
+  name: generate_video
+  author: hanshs474
+  label:
+    en_US: Generate video (with sound)
+    zh_Hans: 生成视频（带声音）
+description:
+  human:
+    en_US: >-
+      Text to video, or photo to video from a first-frame URL. Every clip comes with sound. Waits up to about 4 minutes; a longer run returns its task id for Check status.
+    zh_Hans: 文生视频，或用首帧图片 URL 图生视频，带声音。最多等约 4 分钟，超时返回任务 ID。
+  llm: >-
+    Generate one short video clip with sound using Movoa and return its URL. Describe what happens and how the camera moves. Pass image_url to animate a photo as the first frame. If the clip is not ready within about four minutes the tool returns a task id; call check_status with it later.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: The shot - what happens, where, and how the camera moves.
+      zh_Hans: 画面内容与运镜。
+    llm_description: The shot - what happens, where, and how the camera moves.
+  - name: image_url
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: First frame URL
+      zh_Hans: 首帧图片 URL
+    human_description:
+      en_US: Optional public https URL of a photo to animate as the first frame.
+      zh_Hans: 可选。作为首帧的公开图片 URL。
+    llm_description: Optional public https URL of a photo to animate as the first frame.
+  - name: model
+    type: select
+    required: false
+    form: form
+    default: "minimax-h3"
+    options:
+      - value: "minimax-h3"
+        label: { en_US: "MiniMax H3", zh_Hans: "MiniMax H3" }
+      - value: "seedance-2-5"
+        label: { en_US: "Seedance 2.5", zh_Hans: "Seedance 2.5" }
+      - value: "seedance-2"
+        label: { en_US: "Seedance 2.0", zh_Hans: "Seedance 2.0" }
+      - value: "seedance-2-fast"
+        label: { en_US: "Seedance 2.0 Fast", zh_Hans: "Seedance 2.0 Fast" }
+      - value: "seedance-2-mini"
+        label: { en_US: "Seedance 2.0 Mini", zh_Hans: "Seedance 2.0 Mini" }
+      - value: "veo-3-1-fast"
+        label: { en_US: "Veo 3.1 Fast", zh_Hans: "Veo 3.1 Fast" }
+    label:
+      en_US: Model
+      zh_Hans: 模型
+    human_description:
+      en_US: Video model to use.
+      zh_Hans: 选择视频模型。
+  - name: duration
+    type: select
+    required: false
+    form: form
+    default: "6"
+    options:
+      - value: "4"
+        label: { en_US: "4", zh_Hans: "4" }
+      - value: "5"
+        label: { en_US: "5", zh_Hans: "5" }
+      - value: "6"
+        label: { en_US: "6", zh_Hans: "6" }
+      - value: "8"
+        label: { en_US: "8", zh_Hans: "8" }
+      - value: "10"
+        label: { en_US: "10", zh_Hans: "10" }
+      - value: "15"
+        label: { en_US: "15", zh_Hans: "15" }
+    label:
+      en_US: Duration (seconds)
+      zh_Hans: 时长（秒）
+    human_description:
+      en_US: Clip length in seconds.
+      zh_Hans: 视频时长（秒）。
+  - name: resolution
+    type: select
+    required: false
+    form: form
+    default: "480p"
+    options:
+      - value: "480p"
+        label: { en_US: "480p", zh_Hans: "480p" }
+      - value: "720p"
+        label: { en_US: "720p", zh_Hans: "720p" }
+      - value: "768p"
+        label: { en_US: "768p", zh_Hans: "768p" }
+    label:
+      en_US: Resolution
+      zh_Hans: 分辨率
+    human_description:
+      en_US: Output resolution.
+      zh_Hans: 输出分辨率。
+  - name: aspect_ratio
+    type: select
+    required: false
+    form: form
+    default: "16:9"
+    options:
+      - value: "16:9"
+        label: { en_US: "16:9", zh_Hans: "16:9" }
+      - value: "9:16"
+        label: { en_US: "9:16", zh_Hans: "9:16" }
+      - value: "1:1"
+        label: { en_US: "1:1", zh_Hans: "1:1" }
+    label:
+      en_US: Aspect ratio
+      zh_Hans: 画面比例
+    human_description:
+      en_US: Shape of the clip.
+      zh_Hans: 画面比例。
+extra:
+  python:
+    source: tools/generate_video.py
