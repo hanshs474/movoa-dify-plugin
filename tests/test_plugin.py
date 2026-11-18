@@ -32,9 +32,9 @@ class TestMovoaDifyPlugin(unittest.TestCase):
             (200, {"code": 0, "data": {"status": "processing"}}),
             (200, {"code": 0, "data": {"status": "success", "videos": ["https://cdn.movoa.ai/v.mp4"]}}),
         ])
-        tid = movoa.submit("a paper boat", api_key="sk-test", transport=t)
+        tid = movoa.submit("a paper boat", api_key="test-fixture-token", transport=t)
         self.assertEqual(tid, "task-123")
-        url = movoa.wait(tid, api_key="sk-test", timeout=5, poll_every=0.01, transport=t)
+        url = movoa.wait(tid, api_key="test-fixture-token", timeout=5, poll_every=0.01, transport=t)
         self.assertEqual(url, "https://cdn.movoa.ai/v.mp4")
 
     def test_explain_errors(self):
@@ -45,7 +45,7 @@ class TestMovoaDifyPlugin(unittest.TestCase):
 
     def test_live_wrong_key(self):
         with self.assertRaises(movoa.AuthError):
-            movoa.submit("test", api_key="sk-invalid-key-for-test")
+            movoa.submit("test", api_key="invalid-test-fixture-token")
 
 
 if __name__ == "__main__":
